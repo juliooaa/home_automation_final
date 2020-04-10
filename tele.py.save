@@ -1,0 +1,90 @@
+import time, datetime
+
+import RPi.GPIO as GPIO
+
+import telepot
+
+from telepot.loop import MessageLoop
+
+import wiringpi
+
+
+
+
+
+led = 26
+
+bot = 23 
+
+now = datetime.datetime.now()
+
+GPIO.setmode (GPIO.BOARD)
+
+GPIO.setwarnings(False)
+
+ #LED
+
+GPIO.setup(led, GPIO.OUT)
+
+GPIO.output(led, 0) #Off initially
+
+ #Button
+
+GPIO.setup (bot,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+if GPIO.input(bot)==1:
+       message2 = "Capainha tocou"
+       telegram_bot.sendMessage (chat_id, message2)
+
+def action(msg):
+
+    chat_id = msg['chat']['id']
+
+    command = msg['text']
+
+   if GPIO.input(bot)==1:
+       message2 = "Capainha tocou"
+       telegram_bot.sendMessage (chat_id, message2
+
+    print 'Received: %s' % command
+
+    if 'on' in command:
+
+        message = "Turned on "
+
+        if 'led' in command:
+
+            message = message + "led"
+
+            GPIO.output(led, 1)
+
+            telegram_bot.sendMessage (chat_id, message)
+
+
+
+    if 'off' in command:
+
+        message = "Turned off "
+
+        if 'led' in command:
+
+            message = message + "led "
+
+            GPIO.output(led, 0)
+
+            telegram_bot.sendMessage (chat_id, message)
+
+
+telegram_bot = telepot.Bot('1026442650:AAGb32-TDqSUlDJM3TaMwyqevouM4VNpiA4')
+
+print (telegram_bot.getMe())
+
+MessageLoop(telegram_bot, action).run_as_thread()
+
+print 'Up and Running....'
+
+
+
+while 1:
+
+    time.sleep(10)
