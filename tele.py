@@ -61,50 +61,50 @@ def action(msg):
 
     command = msg['text']
 
-    dc = 100
+   # dc = 100
 
-    print 'Received: %s' % command
+   # print 'Received: %s' % command
 
-    if 'on' in command:
+   # if 'on' in command:
 
-        message = "Turned on "
+    #    message = "Turned on "
 
-        if 'led' in command:
+     #   if 'led' in command:
 
-            message = message + "led"
+      #      message = message + "led"
 
-            GPIO.output(led, 1)
+       #     GPIO.output(led, 1)
 
-            telegram_bot.sendMessage (chat_id, message)
-
-
-
-    if 'off' in command:
-
-        message = "Turned off "
-
-        if 'led' in command:
-
-            message = message + "led "
-
-            GPIO.output(led, 0)
-
-            telegram_bot.sendMessage (chat_id, message)
-
-    if 'luz' in command:
-
-        message = "teste"
-
-        telegram_bot.sendMessage (chat_id, message)
-
-        while(dc != 0):
-
-	    pwm.ChangeDutyCycle(dc)
-	    time.sleep(0.05)
-	    dc = dc - 1
+        #    telegram_bot.sendMessage (chat_id, message)
 
 
-telegram_bot = telepot.Bot('1026442650:AAGb32-TDqSUlDJM3TaMwyqevouM4VNpiA4')
+
+    #if 'off' in command:
+
+     #   message = "Turned off "
+
+      #  if 'led' in command:
+
+       #     message = message + "led "
+
+        #    GPIO.output(led, 0)
+
+         #   telegram_bot.sendMessage (chat_id, message)
+
+   #  if 'luz' in command:
+
+     #   message = "teste"
+
+      #  telegram_bot.sendMessage (chat_id, message)
+
+       # while(dc != 0):
+
+	#    pwm.ChangeDutyCycle(dc)
+	 #   time.sleep(0.05)
+	  #  dc = dc - 1
+
+
+telegram_bot = telepot.Bot('1179446601:AAE_hah4h3dANL0Vr0LNEWylik2DShKU8tA')
 
 print (telegram_bot.getMe())
 
